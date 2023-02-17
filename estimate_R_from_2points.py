@@ -18,6 +18,8 @@ def estimate_R_from_2points():
     ori_y = [ori_1_norm[1], ori_2_norm[1]]
     ori_z = [ori_1_norm[2], ori_2_norm[2]]
     ax.scatter(ori_x, ori_y, ori_z, c='blue', alpha=0.4)
+    ax.text(ori_1_norm[0], ori_1_norm[1], ori_1_norm[2], s='ori1', va='top')
+    ax.text(ori_2_norm[0], ori_2_norm[1], ori_2_norm[2], s='ori2', va='top')
 
     U  = np.array([-0.1, -0.9, 0.2])     # unit vector (not normalized)
     Us = np.linalg.norm(U)               # scalar of U: |U|
@@ -30,13 +32,16 @@ def estimate_R_from_2points():
     rot_y = [rotated_quats[0][1:][1], rotated_quats[1][1:][1]]
     rot_z = [rotated_quats[0][1:][2], rotated_quats[1][1:][2]]
     ax.scatter(rot_x, rot_y, rot_z, c='green', alpha=0.4)
+    ax.text(rotated_quats[0][1:][0], rotated_quats[0][1:][1], rotated_quats[0][1:][2], s='rot1', va='top')
+    ax.text(rotated_quats[1][1:][0], rotated_quats[1][1:][1], rotated_quats[1][1:][2], s='rot2', va='top')
+    ax.text(ori_2_norm[0], ori_2_norm[1], ori_2_norm[2], s='ori2', va='top')
     print(rotated_quats)
     print(rot_x)
 
     # Plot rotation axis vector
     ax.plot([0, UV[0]], [0, UV[1]], [0, UV[2]], c='r')
     ax.scatter(UV[0], UV[1], UV[2], c='r')
-    ax.text(UV[0], UV[1], UV[2], s='  unit vector', va='top')
+    ax.text(UV[0], UV[1], UV[2], s='unit vector', va='top')
 
     # Plot rotated 2 points
 
