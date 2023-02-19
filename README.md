@@ -76,11 +76,14 @@ The result obtained is **ori1*ori2** and **rot1*rot2** in the image below.
 ori1*ori2 = Norm[ori1 × ori2]
 rot1*rot2 = Norm[rot1 × rot2]
 ```
+![cross1](https://user-images.githubusercontent.com/51109408/219935927-b02e5d3f-beaf-4cee-9b37-2f1ba2887dfc.png)
+
 In addition, find the following outer products.
 ```
 ori1*(ori1*ori2) = Norm[ori1 × (ori1 × ori2)]
 rot1*(rot1*rot2) = Norm[rot1 × (rot1 × rot2)]
 ```
+![cross2](https://user-images.githubusercontent.com/51109408/219935958-4d7a3b9f-181e-4259-a4d7-b3ddea1c474e.png)
 
 ### **2. Find Rotation matrix**
 Calculate R1
