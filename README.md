@@ -61,7 +61,7 @@ If you want to return a scalar value that is equivalent to the vector before it 
 - [クォータニオン（四元数） / Quaternion / 回転制御（その１）](https://cnc-selfbuild.blogspot.com/2019/12/quaternion.html)
 <br></br>
 
-## **Estimate Rotation matrix from 2points**
+## **Calculate rotation matrix from 2points**
 N vectors a1, ... , aN with rotation R, we obtain a'1, ... , a'N are obtained.
 ```
 a'i = Ra,  i = 1,..,N
