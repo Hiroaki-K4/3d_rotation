@@ -69,6 +69,7 @@ a'i = Ra,  i = 1,..,N
 If there is no error in the data, two points are sufficient to find R.
 As shown in the image below, the points ori1 and ori2 were rotated to create the points rot1 and rot2.
 The method to find the Rotation matrix using ori1, ori2, rot1, rot2 is shown below.
+![2points](https://user-images.githubusercontent.com/51109408/219936063-36f9c3e8-33e4-4bef-b346-2d2d0dc63718.png)
 
 ### **1. Find the outer product of two vectors and normalize it to a unit vector.**
 The result obtained is **ori1*ori2** and **rot1*rot2** in the image below.
