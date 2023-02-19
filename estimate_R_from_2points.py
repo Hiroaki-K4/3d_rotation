@@ -26,7 +26,6 @@ def estimate_R_from_2points():
     U  = np.array([-0.1, -0.9, 0.2])     # unit vector (not normalized)
     Us = np.linalg.norm(U)               # scalar of U: |U|
     UV = U / Us
-    print(UV)
 
     # Plot rotated 2 points
     ori_quats = [np.insert(ori_1_norm, 0, 0), np.insert(ori_2_norm, 0, 0)]
@@ -40,29 +39,50 @@ def estimate_R_from_2points():
     ax.text(rotated_quats[0][1:][0], rotated_quats[0][1:][1], rotated_quats[0][1:][2], s='rot1', va='top')
     ax.text(rotated_quats[1][1:][0], rotated_quats[1][1:][1], rotated_quats[1][1:][2], s='rot2', va='top')
     ax.text(ori_2_norm[0], ori_2_norm[1], ori_2_norm[2], s='ori2', va='top')
-    print(rotated_quats)
-    print(rot_x)
 
     # Plot rotation axis vector
     ax.plot([0, UV[0]], [0, UV[1]], [0, UV[2]], c='r')
     ax.scatter(UV[0], UV[1], UV[2], c='r')
     ax.text(UV[0], UV[1], UV[2], s='unit vector', va='top')
 
+
     # Estimate R from 2 points
     ori_cross_pro = np.cross(ori_1_norm, ori_2_norm)
+    ori_cross_pro_norm = ori_cross_pro / np.linalg.norm(ori_cross_pro)
     ori_cross_pro_2 = np.cross(ori_1_norm, ori_cross_pro)
+    ori_cross_pro_2_norm = ori_cross_pro_2 / np.linalg.norm(ori_cross_pro_2)
+
     rot_cross_pro = np.cross(rotated_quats[0][1:], rotated_quats[1][1:])
+    rot_cross_pro_norm = rot_cross_pro / np.linalg.norm(rot_cross_pro)
     rot_cross_pro_2 = np.cross(rotated_quats[0][1:], rot_cross_pro)
-    print("ori_cross_pro: ", ori_cross_pro)
-    print("rot_cross_pro: ", rot_cross_pro)
-    ax.plot([0, ori_cross_pro[0]], [0, ori_cross_pro[1]], [0, ori_cross_pro[2]], c='blue')
-    ax.text(ori_cross_pro[0], ori_cross_pro[1], ori_cross_pro[2], s='ori1*ori2', va='top')
-    ax.plot([0, ori_cross_pro_2[0]], [0, ori_cross_pro_2[1]], [0, ori_cross_pro_2[2]], c='blue')
-    ax.text(ori_cross_pro_2[0], ori_cross_pro_2[1], ori_cross_pro_2[2], s='ori1*(ori1*ori2)', va='top')
-    ax.plot([0, rot_cross_pro[0]], [0, rot_cross_pro[1]], [0, rot_cross_pro[2]], c='green')
-    ax.text(rot_cross_pro[0], rot_cross_pro[1], rot_cross_pro[2], s='rot1*rot2', va='top')
-    ax.plot([0, rot_cross_pro_2[0]], [0, rot_cross_pro_2[1]], [0, rot_cross_pro_2[2]], c='green')
-    ax.text(rot_cross_pro_2[0], rot_cross_pro_2[1], rot_cross_pro_2[2], s='rot1*(rot1*rot2)', va='top')
+    rot_cross_pro_2_norm = rot_cross_pro_2 / np.linalg.norm(rot_cross_pro_2)
+    # print("ori_cross_pro: ", ori_cross_pro)
+    # print("ori_cross_pro_2: ", ori_cross_pro_2)
+    # print("rot_cross_pro: ", rot_cross_pro)
+    # print("rot_cross_pro_2: ", rot_cross_pro_2)
+
+    ax.plot([0, ori_cross_pro_norm[0]], [0, ori_cross_pro_norm[1]], [0, ori_cross_pro_norm[2]], c='blue')
+    ax.text(ori_cross_pro_norm[0], ori_cross_pro_norm[1], ori_cross_pro_norm[2], s='ori1*ori2', va='top')
+    ax.plot([0, ori_cross_pro_2_norm[0]], [0, ori_cross_pro_2_norm[1]], [0, ori_cross_pro_2_norm[2]], c='blue')
+    ax.text(ori_cross_pro_2_norm[0], ori_cross_pro_2_norm[1], ori_cross_pro_2_norm[2], s='ori1*(ori1*ori2)', va='top')
+
+    ax.plot([0, rot_cross_pro_norm[0]], [0, rot_cross_pro_norm[1]], [0, rot_cross_pro_norm[2]], c='green')
+    ax.text(rot_cross_pro_norm[0], rot_cross_pro_norm[1], rot_cross_pro_norm[2], s='rot1*rot2', va='top')
+    ax.plot([0, rot_cross_pro_2_norm[0]], [0, rot_cross_pro_2_norm[1]], [0, rot_cross_pro_2_norm[2]], c='green')
+    ax.text(rot_cross_pro_2_norm[0], rot_cross_pro_2_norm[1], rot_cross_pro_2_norm[2], s='rot1*(rot1*rot2)', va='top')
+
+    # Calculate R from 2 orthonormal systems.
+    # R1 = (r1, r2, r3), R2 = (r1', r2', r3') -> R = R2R1T(transpose)
+    R1 = np.array([ori_1_norm, ori_cross_pro_norm, ori_cross_pro_2_norm]).T
+    R2 = np.array([rotated_quats[0][1:], rot_cross_pro_norm, rot_cross_pro_2_norm]).T
+    R = np.dot(R2, R1.T)
+    print("R: ", R)
+    rot_1_from_R = np.dot(R, ori_1_norm)
+    rot_2_from_R = np.dot(R, ori_2_norm)
+    if np.allclose(rot_1_from_R, rotated_quats[0][1:]) and np.allclose(rot_2_from_R, rotated_quats[1][1:]):
+        print("R Estimation from 2points is succeed!!")
+    else:
+        print("R Estimation from 2points is failed!!")
 
     plt.show()
 
