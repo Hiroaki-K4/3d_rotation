@@ -101,6 +101,7 @@ R1 and R2 are orthogonal matrices, mapping the basis {e1, e2, e3} to {r1, r2, r3
 ```
 R = R2R1.T
 ```
+![rotation](https://user-images.githubusercontent.com/51109408/219936558-c39616fb-4dce-4c67-b869-7897b2b04226.png)
 
 The following commands can be used to perform a series of processes.
 ```
