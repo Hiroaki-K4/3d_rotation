@@ -87,9 +87,5 @@ def estimate_R_from_2points():
     plt.show()
 
 
-def main():
-    estimate_R_from_2points()
-
-
 if __name__ == '__main__':
-    main()
+    estimate_R_from_2points()
