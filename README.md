@@ -110,3 +110,28 @@ python3 estimate_R_from_2points.py
 
 ### **Reference**
 - [3D Rotations: Parameter Computation and Lie-Algebra based Optimization chapter4](https://www.amazon.co.jp/3%E6%AC%A1%E5%85%83%E5%9B%9E%E8%BB%A2-%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E8%A8%88%E7%AE%97%E3%81%A8%E3%83%AA%E3%83%BC%E4%BB%A3%E6%95%B0%E3%81%AB%E3%82%88%E3%82%8B%E6%9C%80%E9%81%A9%E5%8C%96-%E9%87%91%E8%B0%B7-%E5%81%A5%E4%B8%80/dp/4320113829)
+<br></br>
+
+
+## **How to estimate rotation matrix(If your data have isotropic errors)**
+If there are errors in the data, the R to be sought is the R that minimizes the following J.
+
+$$J=\frac{1}{2}\sum_{\alpha=1}^N||a\prime_\alpha-Ra_\alpha||^2$$
+
+Expanding the expression gives  
+
+$J=\frac{1}{2}\sum_{\alpha=1}^N\langle a\prime_\alpha-Ra_\alpha,a\prime_\alpha-Ra_\alpha \rangle$  
+$=\frac{1}{2}\sum_{\alpha=1}^N(\langle a\prime_\alpha,a\prime_\alpha \rangle-2\langle Ra_\alpha,a\prime_\alpha \rangle+\langle Ra_\alpha,Ra_\alpha \rangle)$  
+$=\frac{1}{2}\sum_{\alpha=1}^N||a\prime_\alpha||^2 -\sum_{\alpha=1}^N\langle Ra_\alpha,a\prime_\alpha \rangle+\frac{1}{2}\sum_{\alpha=1}^N||a_\alpha||^2$
+
+Therefore, to minimize this  
+$$K=\sum_{\alpha=1}^N\langle Ra_\alpha,a'_\alpha \rangle$$
+
+You just need to calculate R that maximizes.
+
+Using this,  
+$\langle a,b \rangle=tr(ab^\intercal)$  
+K can be written as follows. If you want to verify the above expression, run check_trace.py.  
+$$K=tr(R\sum_{\alpha=1}^Na_\alpha a\prime_\alpha^\intercal)=tr(RN)$$
+N was defined as follows.  
+$N=\sum_{\alpha=1}^Na_\alpha a\prime_\alpha^\intercal$
