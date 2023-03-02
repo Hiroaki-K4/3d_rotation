@@ -38,7 +38,6 @@ def estimate_R_from_2points():
     ax.scatter(rot_x, rot_y, rot_z, c='green', alpha=0.4)
     ax.text(rotated_quats[0][1:][0], rotated_quats[0][1:][1], rotated_quats[0][1:][2], s='rot1', va='top')
     ax.text(rotated_quats[1][1:][0], rotated_quats[1][1:][1], rotated_quats[1][1:][2], s='rot2', va='top')
-    ax.text(ori_2_norm[0], ori_2_norm[1], ori_2_norm[2], s='ori2', va='top')
 
     # Plot rotation axis vector
     ax.plot([0, UV[0]], [0, UV[1]], [0, UV[2]], c='r')
