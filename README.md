@@ -116,22 +116,35 @@ python3 estimate_R_from_2points.py
 ## **How to estimate rotation matrix(If your data have isotropic errors)**
 If there are errors in the data, the R to be sought is the R that minimizes the following J.
 
-$$J=\frac{1}{2}\sum_{\alpha=1}^N||a\prime_\alpha-Ra_\alpha||^2$$
+$$J=\frac{1}{2}\sum_{\alpha=1}^N||a\prime_\alpha-Ra_\alpha||^2 ...(1)$$
 
-Expanding the expression gives  
+Expanding the expression gives
 
-$J=\frac{1}{2}\sum_{\alpha=1}^N\langle a\prime_\alpha-Ra_\alpha,a\prime_\alpha-Ra_\alpha \rangle$  
-$=\frac{1}{2}\sum_{\alpha=1}^N(\langle a\prime_\alpha,a\prime_\alpha \rangle-2\langle Ra_\alpha,a\prime_\alpha \rangle+\langle Ra_\alpha,Ra_\alpha \rangle)$  
-$=\frac{1}{2}\sum_{\alpha=1}^N||a\prime_\alpha||^2 -\sum_{\alpha=1}^N\langle Ra_\alpha,a\prime_\alpha \rangle+\frac{1}{2}\sum_{\alpha=1}^N||a_\alpha||^2$
+$$J=\frac{1}{2}\sum_{\alpha=1}^N\langle a\prime_\alpha-Ra_\alpha,a\prime_\alpha-Ra_\alpha \rangle$$
+$$=\frac{1}{2}\sum_{\alpha=1}^N(\langle a\prime_\alpha,a\prime_\alpha \rangle-2\langle Ra_\alpha,a\prime_\alpha \rangle+\langle Ra_\alpha,Ra_\alpha \rangle)$$
+$$=\frac{1}{2}\sum_{\alpha=1}^N||a\prime_\alpha||^2 -\sum_{\alpha=1}^N\langle Ra_\alpha,a\prime_\alpha \rangle+\frac{1}{2}\sum_{\alpha=1}^N||a_\alpha||^2...(2)$$
 
-Therefore, to minimize this  
-$$K=\sum_{\alpha=1}^N\langle Ra_\alpha,a'_\alpha \rangle$$
+Therefore, to minimize this
+$$K=\sum_{\alpha=1}^N\langle Ra_\alpha,a'_\alpha \rangle...(3)$$
 
 You just need to calculate R that maximizes.
+Using this,
+$$\langle a,b \rangle=tr(ab^\intercal)...(4)$$
 
-Using this,  
-$\langle a,b \rangle=tr(ab^\intercal)$  
 K can be written as follows. If you want to verify the above expression, run check_trace.py.  
-$$K=tr(R\sum_{\alpha=1}^Na_\alpha a\prime_\alpha^\intercal)=tr(RN)$$
-N was defined as follows.  
-$N=\sum_{\alpha=1}^Na_\alpha a\prime_\alpha^\intercal$
+$$K=tr(R\sum_{\alpha=1}^Na_\alpha a\prime_\alpha^\intercal)=tr(RN)...(5)$$
+N was defined as follows.
+$$N=\sum_{\alpha=1}^Na_\alpha a\prime_\alpha^\intercal...(6)$$
+
+We show that the rotation R that maximizes equation (3) can be obtained by a singular value decomposition of N.
+$$N=USV^\intercal...(7)$$
+
+U, V are orthogonal matrices and S is a diagonal matrix such that.
+$$N=diag(\sigma_1, \sigma_2, \sigma_3)$$
+σ is is a large and small relationship as follows.
+$$\sigma_1\geq\sigma_2\geq\sigma_3\geq0$$
+
+Substituting (7) into equation (5), we obtain
+$$K=tr(RUSV^\intercal)=tr(V^\intercal RUS)=tr(TS)$$
+
+During the process, $tr(AB)=tr(BA)$ was used. And T was assumed $V^\intercal RU$.
