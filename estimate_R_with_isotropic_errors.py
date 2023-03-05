@@ -7,7 +7,15 @@ import random
 
 DATA_NUMBER = 100
 
-def estimate_R_with_isotropic_errors():
+
+def estimate_R_with_isotropic_errors(ori_norm_arr, rotated_quats_arr):
+    N = np.dot(ori_norm_arr.T, rotated_quats_arr)
+    U, s, Vt = np.linalg.svd(N)
+    V = Vt.T
+    return np.dot(np.dot(V, np.diag([1, 1, np.linalg.det(V @ U)])), U.T)
+
+
+def main():
     ax = plot_util.plot_base()
     random.seed(10)
 
@@ -56,13 +64,14 @@ def estimate_R_with_isotropic_errors():
     ori_norm_arr = np.array(ori_norm_list)
     rotated_quats_arr = np.array(rotated_quats)
 
-    N = np.dot(ori_norm_arr.T, rotated_quats_arr)
-    U, s, Vh = np.linalg.svd(N)
-    print(s)
-    print(N.shape)
+    R = estimate_R_with_isotropic_errors(ori_norm_arr, rotated_quats_arr)
+
+    # Check if the estimated R is correct
+    points_using_estimated_R = np.dot(R, ori_norm_arr.T)
+    ax.scatter(points_using_estimated_R[0], points_using_estimated_R[1], points_using_estimated_R[2], c='red', alpha=0.4)
 
     plt.show()
 
 
 if __name__ == '__main__':
-    estimate_R_with_isotropic_errors()
+    main()
