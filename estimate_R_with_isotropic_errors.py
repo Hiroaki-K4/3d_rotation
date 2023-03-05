@@ -53,13 +53,13 @@ def estimate_R_with_isotropic_errors():
     ax.scatter(rot_x, rot_y, rot_z, c='green', alpha=0.4)
 
     # Calculate R from 2 orthonormal systems.
-    for i in range(DATA_NUMBER):
-        dot = np.dot(ori_norm_list[i], rotated_quats[i].T)
-        print("dot: ", dot)
+    ori_norm_arr = np.array(ori_norm_list)
+    rotated_quats_arr = np.array(rotated_quats)
 
-    # N = ori_norm_list * rotated_quats.T
-    # print("N: ", N)
-    # print("ori_norm_list: ", ori_norm_list)
+    N = np.dot(ori_norm_arr.T, rotated_quats_arr)
+    U, s, Vh = np.linalg.svd(N)
+    print(s)
+    print(N.shape)
 
     plt.show()
 
