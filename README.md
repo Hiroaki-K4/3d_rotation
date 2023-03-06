@@ -140,11 +140,72 @@ We show that the rotation R that maximizes equation (3) can be obtained by a sin
 $$N=USV^\intercal...(7)$$
 
 U, V are orthogonal matrices and S is a diagonal matrix such that.
-$$N=diag(\sigma_1, \sigma_2, \sigma_3)$$
+$$S=diag(\sigma_1, \sigma_2, \sigma_3)$$
 σ is is a large and small relationship as follows.
 $$\sigma_1\geq\sigma_2\geq\sigma_3\geq0$$
 
 Substituting (7) into equation (5), we obtain
-$$K=tr(RUSV^\intercal)=tr(V^\intercal RUS)=tr(TS)$$
+$$K=tr(RUSV^\intercal)=tr(V^\intercal RUS)=tr(TS)...(8)$$
 
-During the process, $tr(AB)=tr(BA)$ was used. And T was assumed $V^\intercal RU$.
+During the process, $tr(AB)=tr(BA)$ was used. And T was assumed
+$$T=V^\intercal RU...(9)$$
+Since U and V are orthogonal matrices and R is a rotation matrix (and thus an orthogonal matrix), T is also an orthogonal matrix. And if $T=(Tij)$, then
+$$tr(TS)=tr\begin{pmatrix}
+\begin{pmatrix}
+T11 & T12 & T13 \\
+T21 & T22 & T23 \\
+T31 & T32 & T33 \\
+\end{pmatrix}
+\begin{pmatrix}
+\sigma_1 & 0 & 0 \\
+0 & \sigma_2 & 0 \\
+0 & 0 & \sigma_3 \\
+\end{pmatrix}
+\end{pmatrix}
+$$
+
+$$tr(TS)=tr
+\begin{pmatrix}
+\sigma_1T11 & \sigma_2T12 & \sigma_3T13 \\
+\sigma_1T21 & \sigma_2T22 & \sigma_3T23 \\
+\sigma_1T31 & \sigma_2T32 & \sigma_3T33 \\
+\end{pmatrix}
+$$
+
+$$=\sigma_1T11+\sigma_2T22+\sigma_3T33...(10)$$
+
+Since an orthogonal matrix is a matrix with orthogonal unit vectors as rows and columns, no element has a size greater than 1. And since $\sigma_1,\sigma_2,\sigma_3\geq0$
+
+$$tr(TS)\leq\sigma_1+\sigma_2+\sigma_3...(11)$$
+
+The equal sign holds for $T11=T22=T33=1$, which implies $T=I$ Hence, if there exists a rotation R that makes T in equation (9) I, it is the rotation that maximizes K.
+Let I be T in equation (9) and multiply by V from the left and U.T from the right, such that R,
+$$R=VU^\intercal...(12)$$
+
+If $|VU|(=|V||U|)=1$, $|R|=1$ and R is rotation matrix. Since V and U are orthogonal matrices, $|V|=\pm1$ and $|U|=\pm1$, but not necessarily $|VU|=1$.
+When $T11=T22=T33=1$ cannot be achieved no matter how R is chosen, the following equation is true at the expense of the smallest $\sigma_3$.
+
+$$tr(TS)\leq\sigma_1+\sigma_2-\sigma_3...(13)$$
+
+The equal sign is formed by $T11=T22=1,T33=-1$. Since both rows and columns of T are orthonormal, this implies $T=diag(1,1,-1)$. Letting T in equation (9) be $diag(1,1,-1)$ and multiplying by $V$ from the left and $U^\intercal$ from the right, such that R
+
+$$
+R=V\begin{pmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & -1 \\
+\end{pmatrix}
+U^\intercal...(14)
+$$
+
+If $|VU=1|$, then $|R|=-1$, but if $|VU|=-1$, then $|R|=1$, where R is the rotation matrix.
+From the above, the rotation matrix R that maximizes K, i.e., the least-squares solution R that minimizes Eq. (1), is given by combining Eqs. (12) and (14) as follows
+
+$$
+R=V\begin{pmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & |VU| \\
+\end{pmatrix}
+U^\intercal...(15)
+$$
