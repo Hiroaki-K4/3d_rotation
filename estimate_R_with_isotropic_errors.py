@@ -33,7 +33,7 @@ def main():
         ori_z.append(ori_norm[2])
         ori_norm_list.append(ori_norm)
 
-    ax.scatter(ori_x, ori_y, ori_z, c='blue', alpha=0.4)
+    ax.scatter(ori_x, ori_y, ori_z, c='green', alpha=0.4)
 
     U  = np.array([-0.1, -0.9, 0.2])     # unit vector (not normalized)
     Us = np.linalg.norm(U)               # scalar of U: |U|
@@ -58,7 +58,7 @@ def main():
         rot_x.append(rotated_quats[i][0])
         rot_y.append(rotated_quats[i][1])
         rot_z.append(rotated_quats[i][2])
-    ax.scatter(rot_x, rot_y, rot_z, c='green', alpha=0.4)
+    ax.scatter(rot_x, rot_y, rot_z, c='blue', alpha=0.4)
 
     # Calculate R from 2 orthonormal systems.
     ori_norm_arr = np.array(ori_norm_list)

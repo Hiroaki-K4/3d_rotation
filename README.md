@@ -4,7 +4,7 @@ Parameter computation and lie-Algebra based Optimization
 
 ## **Rotate a point using quatanion**
 In the image below, a quaternion is used to rotate a point.
-```
+```bash
 python3 quatanion_rot.py
 ```
 ![quat](https://user-images.githubusercontent.com/51109408/217398841-5b6292c4-bba3-47a5-b3bf-a4f1763dae33.png)
@@ -104,7 +104,7 @@ R = R2R1.T
 ![rotation](https://user-images.githubusercontent.com/51109408/219936558-c39616fb-4dce-4c67-b869-7897b2b04226.png)
 
 The following commands can be used to perform a series of processes.
-```
+```bash
 python3 estimate_R_from_2points.py
 ```
 
@@ -209,3 +209,12 @@ R=V\begin{pmatrix}
 \end{pmatrix}
 U^\intercal...(15)
 $$
+
+The following commands can be used to perform a series of processes.
+```bash
+python3 estimate_R_with_isotropic_errors.py
+```
+
+The blue point cloud in the image below is the green point cloud rotated by 90 degrees with the unit vector as the rotation axis, and isotropic error is added.
+
+The red point cloud is a rotation of the green point cloud using the estimated R It overlaps the blue point cloud of the true value and is purple.
