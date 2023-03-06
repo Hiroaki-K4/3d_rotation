@@ -217,4 +217,8 @@ python3 estimate_R_with_isotropic_errors.py
 
 The blue point cloud in the image below is the green point cloud rotated by 90 degrees with the unit vector as the rotation axis, and isotropic error is added.
 
+![ori_points](https://user-images.githubusercontent.com/51109408/222995663-6da32034-0617-4840-93d0-6a10a8236f64.png)
+
 The red point cloud is a rotation of the green point cloud using the estimated R It overlaps the blue point cloud of the true value and is purple.
+
+![test_data](https://user-images.githubusercontent.com/51109408/222995717-92daa9f5-0c5c-4fac-931f-58f13b558747.png)
