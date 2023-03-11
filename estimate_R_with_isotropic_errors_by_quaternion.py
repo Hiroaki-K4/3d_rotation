@@ -9,45 +9,17 @@ from scipy.spatial.transform import Rotation
 DATA_NUMBER = 100
 
 
-def estimate_R_with_isotropic_errors(ori_norm_arr, rotated_quats_arr):
+def estimate_R_with_isotropic_errors_by_quaternion(ori_norm_arr, rotated_quats_arr):
     N = np.dot(ori_norm_arr.T, rotated_quats_arr)
-    # N_conv = np.array([[(N[0][0] + N[1][1] + N[2][2]), (-N[2][1] + N[1][2]), (N[2][0] - N[0][2]), (-N[1][0] + N[0][1])],
-    #                    [(-N[2][1] + N[1][2]), (N[0][0] - N[1][1] - N[2][2]), (N[1][0] + N[0][1]), (N[2][0] + N[0][2])],
-    #                    [(N[2][0] - N[0][2]), (N[1][0] + N[0][1]), (-N[0][0] + N[1][1] - N[2][2]), (N[2][1] + N[1][2])],
-    #                    [(-N[1][0] + N[0][1]), (N[2][0] + N[0][2]), (N[2][1] + N[1][2]), (-N[0][0] - N[1][1] + N[2][2])],])
-    N_conv = np.array([
-    [
-        N[0, 0] + N[1, 1] + N[2, 2],
-        -N[2, 1] + N[1, 2],
-        N[2, 0] - N[0, 2],
-        -N[1, 0] + N[0, 1],
-    ], [
-        -N[2, 1] + N[1, 2],
-        N[0, 0] - N[1, 1] - N[2, 2],
-        N[1, 0] + N[0, 1],
-        N[2, 0] + N[0, 2],
-    ], [
-        N[2, 0] - N[0, 2],
-        N[1, 0] + N[0, 1],
-        -N[0, 0] + N[1, 1] - N[2, 2],
-        N[2, 1] + N[1, 2],
-    ], [
-        -N[1, 0] + N[0, 1],
-        N[2, 0] + N[0, 2],
-        N[2, 1] + N[1, 2],
-        -N[0, 0] - N[1, 1] + N[2, 2],
-    ],
-])
-    print("N: ", N_conv)
-    print("N: ", N_conv.shape)
-    w, v = np.linalg.eig(N)
+    N_conv = np.array([[(N[0][0] + N[1][1] + N[2][2]), (-N[2][1] + N[1][2]), (N[2][0] - N[0][2]), (-N[1][0] + N[0][1])],
+                       [(-N[2][1] + N[1][2]), (N[0][0] - N[1][1] - N[2][2]), (N[1][0] + N[0][1]), (N[2][0] + N[0][2])],
+                       [(N[2][0] - N[0][2]), (N[1][0] + N[0][1]), (-N[0][0] + N[1][1] - N[2][2]), (N[2][1] + N[1][2])],
+                       [(-N[1][0] + N[0][1]), (N[2][0] + N[0][2]), (N[2][1] + N[1][2]), (-N[0][0] - N[1][1] + N[2][2])],])
+    w, v = np.linalg.eig(N_conv)
     max_vec = v[:, np.argmax(w)]
-    print(w)
-    print(v)
-    print("max_vec: ", max_vec.shape)
     r = Rotation.from_quat(max_vec[[1, 2, 3, 0]])
-    print("R: ", r)
-    return 
+
+    return r.as_matrix()
 
 
 def main():
@@ -99,12 +71,11 @@ def main():
     ori_norm_arr = np.array(ori_norm_list)
     rotated_quats_arr = np.array(rotated_quats)
 
-    # R = estimate_R_with_isotropic_errors(ori_norm_arr, rotated_quats_arr)
-    estimate_R_with_isotropic_errors(ori_norm_arr, rotated_quats_arr)
+    R = estimate_R_with_isotropic_errors_by_quaternion(ori_norm_arr, rotated_quats_arr)
 
     # Check if the estimated R is correct
-    # points_using_estimated_R = np.dot(R, ori_norm_arr.T)
-    # ax.scatter(points_using_estimated_R[0], points_using_estimated_R[1], points_using_estimated_R[2], c='red', alpha=0.4)
+    points_using_estimated_R = np.dot(R, ori_norm_arr.T)
+    ax.scatter(points_using_estimated_R[0], points_using_estimated_R[1], points_using_estimated_R[2], c='red', alpha=0.4)
 
     plt.show()
 
