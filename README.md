@@ -263,11 +263,17 @@ $$+2(q_2q_1+q_0q_3)a_\alpha(1)a\prime_\alpha(2)+(q_0^2-q_1^2+q_2^2-q_3^2)a_\alph
 $$+2(q_3q_1-q_0q_2)a_\alpha(1)a\prime_\alpha(3)+2(q_3q_2+q_0q_1)a_\alpha(2)a\prime_\alpha(3)+(q_0^2-q_1^2-q_2^2+q_3^2)a_\alpha(3)a\prime_\alpha(3))$$
 
 $$=\sum_{\alpha=1}^N(q_0^2(a_\alpha(1)a\prime_\alpha(1) + a_\alpha(2)a\prime_\alpha(2) + a_\alpha(3)a\prime_\alpha(3))$$
+
 $$+q_1^2(a_\alpha(1)a\prime_\alpha(1) - a_\alpha(2)a\prime_\alpha(2) - a_\alpha(3)a\prime_\alpha(3))$$
+
 $$+q_2^2(-a_\alpha(1)a\prime_\alpha(1) + a_\alpha(2)a\prime_\alpha(2) - a_\alpha(3)a\prime_\alpha(3))$$
+
 $$+q_3^2(-a_\alpha(1)a\prime_\alpha(1) - a_\alpha(2)a\prime_\alpha(2) + a_\alpha(3)a\prime_\alpha(3))$$
+
 $$+2q_0q_1(-a_\alpha(3)a\prime_\alpha(2) + a_\alpha(2)a\prime_\alpha(3)) + 2q_0q_2(a_\alpha(3)a\prime_\alpha(1) - a_\alpha(1)a\prime_\alpha(3))$$
+
 $$+2q_0q_3(-a_\alpha(2)a\prime_\alpha(1) + a_\alpha(1)a\prime_\alpha(2)) + 2q_2q_3(a_\alpha(3)a\prime_\alpha(2) + a_\alpha(2)a\prime_\alpha(3))$$
+
 $$+2q_3q_1(a_\alpha(3)a\prime_\alpha(1) + a_\alpha(1)a\prime_\alpha(3)) + 2q_1q_2(a_\alpha(2)a\prime_\alpha(1) + a_\alpha(1)a\prime_\alpha(2)))...(18)$$
 
 Using the fact that the (i,j) elements of the correlation matrix N in equation (6) can be written as
@@ -277,13 +283,19 @@ $$Nij=\sum_{\alpha=1}^Na_\alpha(i) a\prime_\alpha(j)$$
 the above equation can be written as follows
 
 $$K=(q_0^2+q_1^2-q_2^2-q_3^2)N11+2(q_1q_2-q_0q_3)N21+2(q_1q_3+q_0q_2)N31$$
+
 $$+2(q_2q_1+q_0q_3)N12+(q_0^2-q_1^2+q_2^2-q_3^2)N22+2(q_2q_3-q_0q_1)N32$$
+
 $$+2(q_3q_1-q_0q_2)N13+2(q_3q_2+q_0q_1)N23+(q_0^2-q_1^2-q_2^2+q_3^2)N33$$
 <br></br>
 $$=q_0^2(N11+N22+N33)+q_1^2(N11-N22-N33)$$
+
 $$+q_0^2(-N11+N22-N33)+q_0^2(-N11-N22+N33)$$
+
 $$+2q_0q_1(-N32+N23)+2q_0q_2(N31-N13)$$
+
 $$+2q_0q_3(-N21+N12)+2q_2q_3(N32+N23)$$
+
 $$+2q_3q_1(N31+N13)+2q_1q_2(N21+N12)...(19)$$
 
 Define a 4*4 symmetric matrix $N\prime$ as follows
