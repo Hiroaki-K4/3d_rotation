@@ -116,41 +116,69 @@ python3 estimate_R_from_2points.py
 ## **How to estimate rotation matrix(If your data have isotropic errors)**
 If there are errors in the data, the R to be sought is the R that minimizes the following J.
 
-$$J=\frac{1}{2}\sum_{\alpha=1}^N||a\prime_\alpha-Ra_\alpha||^2 ...(1)$$
+$$
+J=\frac{1}{2}\sum_{\alpha=1}^N||a\prime_\alpha-Ra_\alpha||^2 ...(1)
+$$
 
+### **1. Solution by Singular Value Decomposition**
 Expanding the expression gives
 
-$$J=\frac{1}{2}\sum_{\alpha=1}^N\langle a\prime_\alpha-Ra_\alpha,a\prime_\alpha-Ra_\alpha \rangle$$
-$$=\frac{1}{2}\sum_{\alpha=1}^N(\langle a\prime_\alpha,a\prime_\alpha \rangle-2\langle Ra_\alpha,a\prime_\alpha \rangle+\langle Ra_\alpha,Ra_\alpha \rangle)$$
-$$=\frac{1}{2}\sum_{\alpha=1}^N||a\prime_\alpha||^2 -\sum_{\alpha=1}^N\langle Ra_\alpha,a\prime_\alpha \rangle+\frac{1}{2}\sum_{\alpha=1}^N||a_\alpha||^2...(2)$$
+$$
+J=\frac{1}{2}\sum_{\alpha=1}^N\langle a\prime_\alpha-Ra_\alpha,a\prime_\alpha-Ra_\alpha \rangle
+$$
+$$
+=\frac{1}{2}\sum_{\alpha=1}^N(\langle a\prime_\alpha,a\prime_\alpha \rangle-2\langle Ra_\alpha,a\prime_\alpha \rangle+\langle Ra_\alpha,Ra_\alpha \rangle)
+$$
+$$
+=\frac{1}{2}\sum_{\alpha=1}^N||a\prime_\alpha||^2 -\sum_{\alpha=1}^N\langle Ra_\alpha,a\prime_\alpha \rangle+\frac{1}{2}\sum_{\alpha=1}^N||a_\alpha||^2...(2)
+$$
 
 Therefore, to minimize this
-$$K=\sum_{\alpha=1}^N\langle Ra_\alpha,a'_\alpha \rangle...(3)$$
+$$
+K=\sum_{\alpha=1}^N\langle Ra_\alpha,a'_\alpha \rangle...(3)
+$$
 
 You just need to calculate R that maximizes.
 Using this,
-$$\langle a,b \rangle=tr(ab^\intercal)...(4)$$
+$$
+\langle a,b \rangle=tr(ab^\intercal)...(4)
+$$
 
 K can be written as follows. If you want to verify the above expression, run check_trace.py.  
-$$K=tr(R\sum_{\alpha=1}^Na_\alpha a\prime_\alpha^\intercal)=tr(RN)...(5)$$
+$$
+K=tr(R\sum_{\alpha=1}^Na_\alpha a\prime_\alpha^\intercal)=tr(RN)...(5)
+$$
 N was defined as follows.
-$$N=\sum_{\alpha=1}^Na_\alpha a\prime_\alpha^\intercal...(6)$$
+$$
+N=\sum_{\alpha=1}^Na_\alpha a\prime_\alpha^\intercal...(6)
+$$
 
 We show that the rotation R that maximizes equation (3) can be obtained by a singular value decomposition of N.
-$$N=USV^\intercal...(7)$$
+$$
+N=USV^\intercal...(7)
+$$
 
 U, V are orthogonal matrices and S is a diagonal matrix such that.
-$$S=diag(\sigma_1, \sigma_2, \sigma_3)$$
+$$
+S=diag(\sigma_1, \sigma_2, \sigma_3)
+$$
 σ is is a large and small relationship as follows.
-$$\sigma_1\geq\sigma_2\geq\sigma_3\geq0$$
+$$
+\sigma_1\geq\sigma_2\geq\sigma_3\geq0
+$$
 
 Substituting (7) into equation (5), we obtain
-$$K=tr(RUSV^\intercal)=tr(V^\intercal RUS)=tr(TS)...(8)$$
+$$
+K=tr(RUSV^\intercal)=tr(V^\intercal RUS)=tr(TS)...(8)
+$$
 
 During the process, $tr(AB)=tr(BA)$ was used. And T was assumed
-$$T=V^\intercal RU...(9)$$
+$$
+T=V^\intercal RU...(9)
+$$
 Since U and V are orthogonal matrices and R is a rotation matrix (and thus an orthogonal matrix), T is also an orthogonal matrix. And if $T=(Tij)$, then
-$$tr(TS)=tr\begin{pmatrix}
+$$
+tr(TS)=tr\begin{pmatrix}
 \begin{pmatrix}
 T11 & T12 & T13 \\
 T21 & T22 & T23 \\
@@ -164,7 +192,8 @@ T31 & T32 & T33 \\
 \end{pmatrix}
 $$
 
-$$tr(TS)=tr
+$$
+tr(TS)=tr
 \begin{pmatrix}
 \sigma_1T11 & \sigma_2T12 & \sigma_3T13 \\
 \sigma_1T21 & \sigma_2T22 & \sigma_3T23 \\
@@ -172,20 +201,28 @@ $$tr(TS)=tr
 \end{pmatrix}
 $$
 
-$$=\sigma_1T11+\sigma_2T22+\sigma_3T33...(10)$$
+$$
+=\sigma_1T11+\sigma_2T22+\sigma_3T33...(10)
+$$
 
 Since an orthogonal matrix is a matrix with orthogonal unit vectors as rows and columns, no element has a size greater than 1. And since $\sigma_1,\sigma_2,\sigma_3\geq0$
 
-$$tr(TS)\leq\sigma_1+\sigma_2+\sigma_3...(11)$$
+$$
+tr(TS)\leq\sigma_1+\sigma_2+\sigma_3...(11)
+$$
 
 The equal sign holds for $T11=T22=T33=1$, which implies $T=I$ Hence, if there exists a rotation R that makes T in equation (9) I, it is the rotation that maximizes K.
 Let I be T in equation (9) and multiply by V from the left and U.T from the right, such that R,
-$$R=VU^\intercal...(12)$$
+$$
+R=VU^\intercal...(12)
+$$
 
 If $|VU|(=|V||U|)=1$, $|R|=1$ and R is rotation matrix. Since V and U are orthogonal matrices, $|V|=\pm1$ and $|U|=\pm1$, but not necessarily $|VU|=1$.
 When $T11=T22=T33=1$ cannot be achieved no matter how R is chosen, the following equation is true at the expense of the smallest $\sigma_3$.
 
-$$tr(TS)\leq\sigma_1+\sigma_2-\sigma_3...(13)$$
+$$
+tr(TS)\leq\sigma_1+\sigma_2-\sigma_3...(13)
+$$
 
 The equal sign is formed by $T11=T22=1,T33=-1$. Since both rows and columns of T are orthonormal, this implies $T=diag(1,1,-1)$. Letting T in equation (9) be $diag(1,1,-1)$ and multiplying by $V$ from the left and $U^\intercal$ from the right, such that R
 
@@ -222,3 +259,81 @@ The blue point cloud in the image below is the green point cloud rotated by 90 d
 The red point cloud is a rotation of the green point cloud using the estimated R It overlaps the blue point cloud of the true value and is purple.
 
 ![test_data](https://user-images.githubusercontent.com/51109408/222995717-92daa9f5-0c5c-4fac-931f-58f13b558747.png)
+
+### **2. Solution by quaternion representation**
+$$
+q=q_0+q_1i+q_2j+q_3k...(16)
+$$
+Using the above quaternion to denote R, we have
+$$
+R=\begin{pmatrix}
+q_0^2+q_1^2-q_2^2-q_3^2 & 2(q_1q_2-q_0q_3) & 2(q_1q_3+q_0q_2) \\
+2(q_2q_1+q_0q_3) & q_0^2-q_1^2+q_2^2-q_3^2 & 2(q_2q_3-q_0q_1) \\
+2(q_3q_1-q_0q_2) & 2(q_3q_2+q_0q_1) & q_0^2-q_1^2-q_2^2+q_3^2 \\
+\end{pmatrix}...(17)
+$$
+
+Using equation (17), $Ra_\alpha$ can be written as
+$$
+Ra_\alpha=\begin{pmatrix}
+(q_0^2+q_1^2-q_2^2-q_3^2)a_\alpha(1) + 2(q_1q_2-q_0q_3)a_\alpha(2) + 2(q_1q_3+q_0q_2)a_\alpha(3) \\
+2(q_2q_1+q_0q_3)a_\alpha(1) + (q_0^2-q_1^2+q_2^2-q_3^2)a_\alpha(2) + 2(q_2q_3-q_0q_1)a_\alpha(3) \\
+2(q_3q_1-q_0q_2)a_\alpha(1) + 2(q_3q_2+q_0q_1)a_\alpha(2) + (q_0^2-q_1^2-q_2^2+q_3^2)a_\alpha(3) \\
+\end{pmatrix}
+$$
+
+Hence, K in equation (3) can be written as
+$$
+K=\sum_{\alpha=1}^N((q_0^2+q_1^2-q_2^2-q_3^2)a_\alpha(1)a\prime_\alpha(1) + 2(q_1q_2-q_0q_3)a_\alpha(2)a\prime_\alpha(1) + 2(q_1q_3+q_0q_2)a_\alpha(3)a\prime_\alpha(1)\\
++ 2(q_2q_1+q_0q_3)a_\alpha(1)a\prime_\alpha(2) + (q_0^2-q_1^2+q_2^2-q_3^2)a_\alpha(2)a\prime_\alpha(2) + 2(q_2q_3-q_0q_1)a_\alpha(3)a\prime_\alpha(2)\\
++ 2(q_3q_1-q_0q_2)a_\alpha(1)a\prime_\alpha(3) + 2(q_3q_2+q_0q_1)a_\alpha(2)a\prime_\alpha(3) + (q_0^2-q_1^2-q_2^2+q_3^2)a_\alpha(3)a\prime_\alpha(3))
+$$
+
+$$
+=\sum_{\alpha=1}^N(q_0^2(a_\alpha(1)a\prime_\alpha(1) + a_\alpha(2)a\prime_\alpha(2) + a_\alpha(3)a\prime_\alpha(3))\\
++q_1^2(a_\alpha(1)a\prime_\alpha(1) - a_\alpha(2)a\prime_\alpha(2) - a_\alpha(3)a\prime_\alpha(3))\\
++q_2^2(-a_\alpha(1)a\prime_\alpha(1) + a_\alpha(2)a\prime_\alpha(2) - a_\alpha(3)a\prime_\alpha(3))\\
++q_3^2(-a_\alpha(1)a\prime_\alpha(1) - a_\alpha(2)a\prime_\alpha(2) + a_\alpha(3)a\prime_\alpha(3))\\
++2q_0q_1(-a_\alpha(3)a\prime_\alpha(2) + a_\alpha(2)a\prime_\alpha(3)) + 2q_0q_2(a_\alpha(3)a\prime_\alpha(1) - a_\alpha(1)a\prime_\alpha(3))\\
++2q_0q_3(-a_\alpha(2)a\prime_\alpha(1) + a_\alpha(1)a\prime_\alpha(2)) + 2q_2q_3(a_\alpha(3)a\prime_\alpha(2) + a_\alpha(2)a\prime_\alpha(3))\\
++2q_3q_1(a_\alpha(3)a\prime_\alpha(1) + a_\alpha(1)a\prime_\alpha(3)) + 2q_1q_2(a_\alpha(2)a\prime_\alpha(1) + a_\alpha(1)a\prime_\alpha(2)))...(18)
+$$
+
+Using the fact that the (i,j) elements of the correlation matrix N in equation (6) can be written as $Nij=\sum_{\alpha=1}^Na_\alpha(i) a\prime_\alpha(j)$, the above equation can be written as follows
+$$
+K=(q_0^2+q_1^2-q_2^2-q_3^2)N11+2(q_1q_2-q_0q_3)N21+2(q_1q_3+q_0q_2)N31\\
++2(q_2q_1+q_0q_3)N12+(q_0^2-q_1^2+q_2^2-q_3^2)N22+2(q_2q_3-q_0q_1)N32\\
+2(q_3q_1-q_0q_2)N13+2(q_3q_2+q_0q_1)N23+(q_0^2-q_1^2-q_2^2+q_3^2)N33\\
+$$
+$$
+=q_0^2(N11+N22+N33)+q_1^2(N11-N22-N33)\\
++q_0^2(-N11+N22-N33)+q_0^2(-N11-N22+N33)\\
++2q_0q_1(-N32+N23)+2q_0q_2(N31-N13)\\
++2q_0q_3(-N21+N12)+2q_2q_3(N32+N23)\\
++2q_3q_1(N31+N13)+2q_1q_2(N21+N12)\\...(19)
+$$
+
+Define a 4*4 symmetric matrix $N\prime$ as follows
+$$
+N\prime=\begin{pmatrix}
+N11+N22+N33 & -N32+N23 & N31-N13 & -N21+N12 \\
+-N32+N23 & N11-N22-N33 & N21+N12 & N31+N13 \\
+N31-N13 & N21+N12 & -N11+N22-N33 & N32+N23 \\
+-N21+N12 & N31+N13 & N32+N23 & -N11-N22+N33
+\end{pmatrix}...(20)
+$$
+
+Using the 4-dimensional vector $q=(q_0,q_1,q_2,q_3)^\intercal$, equation (18) can be written as
+$$
+K=\langle q,N\prime q \rangle...(21)
+$$
+
+Since $N\prime$ is a symmetric matrix, from the Min-max theorem, q that maximizes Eq. (21) is the unit eigenvector for the largest eigenvalue of matrix $N\prime$. Substituting q into equation (17), we can determine R that maximizes K.
+
+The following commands can be used to perform a series of processes.
+```bash
+python3 estimate_R_with_isotropic_errors_by_quaternion.py
+```
+
+### **Reference**
+- [対称行列のレイリー商とは：最大・最小固有値との関係](https://math-fun.net/20210721/16543/)
