@@ -270,7 +270,7 @@ $$=\sum_{\alpha=1}^N(q_0^2(a_\alpha(1)a\prime_\alpha(1) + a_\alpha(2)a\prime_\al
 
 Using the fact that the (i,j) elements of the correlation matrix N in equation (6) can be written as
 
-$$Nij=\sum_{\alpha=1}^Na_\alpha(i) a\prime_\alpha(j)$$,
+$$Nij=\sum_{\alpha=1}^Na_\alpha(i) a\prime_\alpha(j)$$
 
 the above equation can be written as follows
 
