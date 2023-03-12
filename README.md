@@ -256,9 +256,9 @@ $$Ra_\alpha=\begin{pmatrix}
 
 Hence, K in equation (3) can be written as
 
-$$K=\sum_{\alpha=1}^N((q_0^2+q_1^2-q_2^2-q_3^2)a_\alpha(1)a\prime_\alpha(1) + 2(q_1q_2-q_0q_3)a_\alpha(2)a\prime_\alpha(1) + 2(q_1q_3+q_0q_2)a_\alpha(3)a\prime_\alpha(1)\\
-+ 2(q_2q_1+q_0q_3)a_\alpha(1)a\prime_\alpha(2) + (q_0^2-q_1^2+q_2^2-q_3^2)a_\alpha(2)a\prime_\alpha(2) + 2(q_2q_3-q_0q_1)a_\alpha(3)a\prime_\alpha(2)\\
-+ 2(q_3q_1-q_0q_2)a_\alpha(1)a\prime_\alpha(3) + 2(q_3q_2+q_0q_1)a_\alpha(2)a\prime_\alpha(3) + (q_0^2-q_1^2-q_2^2+q_3^2)a_\alpha(3)a\prime_\alpha(3))$$
+$$K=\sum_{\alpha=1}^N((q_0^2+q_1^2-q_2^2-q_3^2)a_\alpha(1)a\prime_\alpha(1)+2(q_1q_2-q_0q_3)a_\alpha(2)a\prime_\alpha(1) + 2(q_1q_3+q_0q_2)a_\alpha(3)a\prime_\alpha(1)\\
++2(q_2q_1+q_0q_3)a_\alpha(1)a\prime_\alpha(2)+(q_0^2-q_1^2+q_2^2-q_3^2)a_\alpha(2)a\prime_\alpha(2)+2(q_2q_3-q_0q_1)a_\alpha(3)a\prime_\alpha(2)\\
++2(q_3q_1-q_0q_2)a_\alpha(1)a\prime_\alpha(3)+2(q_3q_2+q_0q_1)a_\alpha(2)a\prime_\alpha(3)+(q_0^2-q_1^2-q_2^2+q_3^2)a_\alpha(3)a\prime_\alpha(3))$$
 
 $$=\sum_{\alpha=1}^N(q_0^2(a_\alpha(1)a\prime_\alpha(1) + a_\alpha(2)a\prime_\alpha(2) + a_\alpha(3)a\prime_\alpha(3))\\
 +q_1^2(a_\alpha(1)a\prime_\alpha(1) - a_\alpha(2)a\prime_\alpha(2) - a_\alpha(3)a\prime_\alpha(3))\\
