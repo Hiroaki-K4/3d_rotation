@@ -111,7 +111,7 @@ python3 estimate_R_from_2points.py
 ### **Reference**
 - [3D Rotations: Parameter Computation and Lie-Algebra based Optimization chapter4](https://www.amazon.co.jp/3%E6%AC%A1%E5%85%83%E5%9B%9E%E8%BB%A2-%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E8%A8%88%E7%AE%97%E3%81%A8%E3%83%AA%E3%83%BC%E4%BB%A3%E6%95%B0%E3%81%AB%E3%82%88%E3%82%8B%E6%9C%80%E9%81%A9%E5%8C%96-%E9%87%91%E8%B0%B7-%E5%81%A5%E4%B8%80/dp/4320113829)
 <br></br>
-
+<br></br>
 
 ## **How to estimate rotation matrix(If your data have isotropic errors)**
 If there are errors in the data, the R to be sought is the R that minimizes the following J.
@@ -233,6 +233,7 @@ The blue point cloud in the image below is the green point cloud rotated by 90 d
 The red point cloud is a rotation of the green point cloud using the estimated R It overlaps the blue point cloud of the true value and is purple.
 
 ![test_data](https://user-images.githubusercontent.com/51109408/222995717-92daa9f5-0c5c-4fac-931f-58f13b558747.png)
+<br></br>
 
 ### **2. Solution by quaternion representation**
 
@@ -320,3 +321,59 @@ python3 estimate_R_with_isotropic_errors_by_quaternion.py
 
 ### **Reference**
 - [対称行列のレイリー商とは：最大・最小固有値との関係](https://math-fun.net/20210721/16543/)
+<br></br>
+
+### **3. Optimization of rotation matrix**
+R estimated from image and sensor data may not be an exact rotation matrix due to errors.
+We then consider the problem of correcting this to the exact rotation matrix R.
+Specifically, the estimated $R\prime$ is replaced by the rotation matrix $R$ that minimizes $||R-R\prime||$.  
+However, we define the matrix norm of the m*n matrix $A=(Aij)$ as
+
+$$
+||A||=\sqrt{\sum_{i=1}^m\sum_{j=1}^nAij^2}...(22)
+$$
+
+The following equation holds for the matrix norm in equation (22).
+
+$$
+||A||^2=tr(AA^\intercal)=tr(A^\intercal A)
+$$
+
+From this we can write $||R-R\prime||^2$ as
+
+$$
+||R-R\prime||^2=tr((R-R\prime)(R-R\prime)^\intercal)
+$$
+
+$$
+=tr(RR^\intercal-RR\prime^\intercal-R\prime R^\intercal+R\prime R\prime^\intercal)
+$$
+
+$$
+=trI-tr(RR\prime^\intercal)-tr((RR\prime^\intercal)^\intercal)+tr(R\prime R\prime^\intercal)
+$$
+
+$$
+=3-2tr(RR\prime^\intercal)+||R\prime||^2
+$$
+
+Therefore, the $R$ that minimizes $R-R\prime$ is the $R$ that maximizes $tr(RR\prime^\intercal)$. This is the same form as the maximization in Eq. (5).
+Hence, the solution is determined by the singular value decomposition of $R\prime$.
+
+$$
+R\prime=USV^\intercal
+$$
+
+Since $R\prime^\intercal=USV^\intercal$, from equation (15) the solution is
+
+$$R=U\begin{pmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & |UV| \\
+\end{pmatrix}
+V^\intercal$$
+
+The following commands can be used to perform a series of processes.
+```bash
+python3 optimize_R_matrix.py
+```
