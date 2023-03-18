@@ -193,7 +193,7 @@ Since an orthogonal matrix is a matrix with orthogonal unit vectors as rows and 
 
 $$tr(TS)\leq\sigma_1+\sigma_2+\sigma_3...(11)$$
 
-The equal sign holds for $T11=T22=T33=1$, which implies $T=I$ Hence, if there exists a rotation R that makes T in equation (9) I, it is the rotation that maximizes K.
+The equal sign holds for $T11=T22=T33=1$, which implies $T=I$. Hence, if there exists a rotation R that makes T in equation (9) I, it is the rotation that maximizes K.
 Let I be T in equation (9) and multiply by V from the left and U.T from the right, such that R,
 
 $$R=VU^\intercal...(12)$$
@@ -212,7 +212,7 @@ $$R=V\begin{pmatrix}
 \end{pmatrix}
 U^\intercal...(14)$$
 
-If $|VU=1|$, then $|R|=-1$, but if $|VU|=-1$, then $|R|=1$, where R is the rotation matrix.
+If $|VU|=1$, then $|R|=-1$, but if $|VU|=-1$, then $|R|=1$, where R is the rotation matrix.
 From the above, the rotation matrix R that maximizes K, i.e., the least-squares solution R that minimizes Eq. (1), is given by combining Eqs. (12) and (14) as follows
 
 $$R=V\begin{pmatrix}
