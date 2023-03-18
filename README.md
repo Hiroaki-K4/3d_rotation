@@ -180,7 +180,7 @@ T31 & T32 & T33 \\
 \end{pmatrix}
 \end{pmatrix}$$
 
-$$tr(TS)=tr
+$$=tr
 \begin{pmatrix}
 \sigma_1T11 & \sigma_2T12 & \sigma_3T13 \\
 \sigma_1T21 & \sigma_2T22 & \sigma_3T23 \\
