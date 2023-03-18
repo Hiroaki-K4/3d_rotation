@@ -309,7 +309,7 @@ N31-N13 & N21+N12 & -N11+N22-N33 & N32+N23 \\
 -N21+N12 & N31+N13 & N32+N23 & -N11-N22+N33
 \end{pmatrix}...(20)$$
 
-Using the 4-dimensional vector $q=(q_0,q_1,q_2,q_3)^\intercal$, equation (18) can be written as
+Using the 4-dimensional vector $q=(q_0,q_1,q_2,q_3)^\intercal$, equation (19) can be written as
 
 $$K=\langle q,N\prime q \rangle...(21)$$
 
