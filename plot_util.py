@@ -21,3 +21,14 @@ def plot_base(elev=25, azim=-70):
     ax.plot([0, 0], [0, 0], [-1, 1], linestyle=':', c='red', alpha=alpha)
 
     return ax
+
+
+def plot_minimum(elev=25, azim=-70):
+    fig = plt.figure(figsize=(10, 10))
+    ax = fig.add_subplot(111, projection='3d')
+    ax.view_init(elev=elev, azim=azim)
+    ax.set(xlim=(-1, 1), ylim=(-1 ,1), zlim=(-1, 1))
+    ax.set(xlabel='X', ylabel='Y', zlabel='Z')
+    ax.xaxis.pane.fill = ax.yaxis.pane.fill = ax.zaxis.pane.fill = False
+
+    return ax
