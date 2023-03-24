@@ -27,9 +27,15 @@ def main():
     ori_x = []
     ori_y = []
     ori_z = []
-    ori_vec_list = []
+    ori_list = []
     for i in range(DATA_NUMBER):
         ori_vec = np.array([np.random.uniform(-1,1), np.random.uniform(-1,1), np.random.uniform(0,1)])
+        ori_list.append(ori_vec)
+
+    ori_center = (ori_list[0] + ori_list[1]) / 2
+    ori_vec_list = []
+    for i in range(DATA_NUMBER):
+        ori_vec = np.array([ori_list[i][0] - ori_center[0], ori_list[i][1] - ori_center[1], ori_list[i][2] - ori_center[2]])
         ori_x.append(ori_vec[0])
         ori_y.append(ori_vec[1])
         ori_z.append(ori_vec[2])
