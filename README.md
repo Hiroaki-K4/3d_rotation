@@ -1,4 +1,4 @@
-# 3d_rotation
+# 3d rotation
 This repository is an experiment in understanding and experimenting with 3D rotation.  
 Let's enjoy 3D rotation.
 <br></br>
