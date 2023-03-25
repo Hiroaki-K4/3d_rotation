@@ -1,5 +1,6 @@
 # 3d_rotation
-Parameter computation and lie-Algebra based Optimization
+This repository is an experiment in understanding and experimenting with 3D rotation.  
+Let's enjoy 3D rotation.
 <br></br>
 
 ## **Rotate a point using quatanion**
