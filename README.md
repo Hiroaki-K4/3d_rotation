@@ -57,7 +57,7 @@ If you want to return a scalar value that is equivalent to the vector before it 
 [x, y, z] * |A|
 ```
 
-### **Reference**
+### **References**
 - [クォータニオンと回転](https://www.f-sp.com/entry/2017/06/30/221124)
 - [クォータニオン（四元数） / Quaternion / 回転制御（その１）](https://cnc-selfbuild.blogspot.com/2019/12/quaternion.html)
 <br></br>
