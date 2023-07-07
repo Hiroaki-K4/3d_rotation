@@ -5,57 +5,85 @@ Let's enjoy 3D rotation.
 
 ## **Rotate a point using quatanion**
 In the image below, a quaternion is used to rotate a point.
+
 ```bash
 python3 quatanion_rot.py
 ```
+
 ![quat](https://user-images.githubusercontent.com/51109408/217398841-5b6292c4-bba3-47a5-b3bf-a4f1763dae33.png)
 
 ### **How to calculate rotation using quatanion**
 A is the point to move from now on.
-```
+
+$$
 A = [ax, ay, az]
-```
+$$
+
 Normalize A.
-```
-An = A / |A|
-```
+
+$$
+A_n = A / |A|
+$$
+
 Unit vector: axis of rotation.
-```
-U = [ux, uy, uz]
-```
+
+$$
+U=[u_x, u_y, u_z]
+$$
+
 Normalize U, if you need it.
-```
-Un = U / |U|
-```
+
+$$
+U_n = U / |U|
+$$
+
 t is rotation angle.
-```
+
+$$
 t = θ
-```
+$$
+
 Substitute the angle and unit vector (rotational axis vector) in the following formula.
-```
-Q  = [cos(t/2),  ux*sin(t/2),  uy*sin(t/2),  uy*sin(t/2)]
-Q- = [cos(t/2), -ux*sin(t/2), -uy*sin(t/2), -uy*sin(t/2)]
-```
+
+$$
+\begin{align*}
+Q  &= [cos(t/2), u_x\times sin(t/2), u_y\times sin(t/2), u_y\times sin(t/2)] \\
+Q^- &= [cos(t/2), -u_x\times sin(t/2), -u_y\times sin(t/2), -u_y\times sin(t/2)]
+\end{align*}
+$$
+
 Calculate rotated quatanion using rotation fomula.
-```
-w, x, y, z = Q*A*Q-
-```
+
+$$
+w, x, y, z = QAQ^-
+$$
+
 The following formula is used for the multiplication of the above quaternions.
-```
-q1*q2 = [[q1w*q2w - q1x*q2x - q1y*q2y - q1z*q2z],
-         [q1w*q2x + q1x*q2w + q1y*q2z - q1z*q2y],
-         [q1w*q2y - q1x*q2z + q1y*q2w + q1z*q2x],
-         [q1w*q2z + q1x*q2y - q1y*q2x + q1z*q2w]]
-      = [w, x, y, z]
-```
-As a result, [w, x, y, z] is obtained, so extract only the xyz components and make it a vector.
-```
-[x, y, z]
-```
+
+$$
+q_1q_2=\begin{pmatrix}
+w \\
+x \\
+y \\
+z \\
+\end{pmatrix}=\begin{pmatrix}
+q_{1w}q_{2w}-q_{1x}q_{2x}-q_{1y}q_{2y}-q_{1z}q_{2z} \\
+q_{1w}q_{2x}+q_{1x}q_{2w}+q_{1y}q_{2z}-q_{1z}q_{2y} \\
+q_{1w}q_{2y}-q_{1x}q_{2z}+q_{1y}q_{2w}+q_{1z}q_{2x} \\
+q_{1w}q_{2z}+q_{1x}q_{2y}-q_{1y}q_{2x}+q_{1z}q_{2w} \\
+\end{pmatrix}
+$$
+
+As a result, [w, x, y, z] is obtained, so extract only the xyz components and make it a vector.  
 If you want to return a scalar value that is equivalent to the vector before it was normalized, multiply it back by the original scalar value.
-```
-[x, y, z] * |A|
-```
+
+$$
+\begin{pmatrix}
+x \\
+y \\
+z \\
+\end{pmatrix}\times |A|
+$$
 
 ### **References**
 - [クォータニオンと回転](https://www.f-sp.com/entry/2017/06/30/221124)
@@ -64,9 +92,11 @@ If you want to return a scalar value that is equivalent to the vector before it 
 
 ## **Calculate rotation matrix from 2points**
 N vectors a1, ... , aN with rotation R, we obtain a'1, ... , a'N are obtained.
-```
-a'i = Ra,  i = 1,..,N
-```
+
+$$
+a\prime_i=Ra,  i=1,..,N
+$$
+
 If there is no error in the data, two points are sufficient to find R.
 As shown in the image below, the points ori1 and ori2 were rotated to create the points rot1 and rot2.
 The method to find the Rotation matrix using ori1, ori2, rot1, rot2 is shown below.
@@ -75,34 +105,52 @@ The method to find the Rotation matrix using ori1, ori2, rot1, rot2 is shown bel
 
 ### **1. Find the outer product of two vectors and normalize it to a unit vector.**
 The result obtained is **ori1*ori2** and **rot1*rot2** in the image below.
-```
-ori1*ori2 = Norm[ori1 × ori2]
-rot1*rot2 = Norm[rot1 × rot2]
-```
+
+$$
+ori_1*ori_2 = Norm[ori_1 × ori_2] \\
+rot_1*rot_2 = Norm[rot_1 × rot_2]
+$$
+
 ![cross1](https://user-images.githubusercontent.com/51109408/219935927-b02e5d3f-beaf-4cee-9b37-2f1ba2887dfc.png)
 
 In addition, find the following outer products.
-```
-ori1*(ori1*ori2) = Norm[ori1 × (ori1 × ori2)]
-rot1*(rot1*rot2) = Norm[rot1 × (rot1 × rot2)]
-```
+
+$$
+ori_1*(ori_1*ori_2) = Norm[ori_1 × (ori_1 × ori_2)] \\
+rot_1*(rot_1*rot_2) = Norm[rot_1 × (rot_1 × rot_2)]
+$$
+
 ![cross2](https://user-images.githubusercontent.com/51109408/219935958-4d7a3b9f-181e-4259-a4d7-b3ddea1c474e.png)
 
 ### **2. Find Rotation matrix**
 Calculate R1
-```
-r1 = Norm[ori1], r2 = Norm[ori1 × ori2], r3 = Norm[ori1 × (ori1 × ori2)]
-R1 = (r1, r2, r3)
-```
+
+$$
+r_1 = Norm[ori_1], r_2 = Norm[ori_1 × ori_2], r_3 = Norm[ori_1 × (ori_1 × ori_2)] \\
+R_1=\begin{pmatrix}
+r_1 \\
+r_2 \\
+r_3\\
+\end{pmatrix}
+$$
+
 and calculate R2
-```
-r1' = Norm[rot1], r2' = Norm[rot1 × rot2], r3' = Norm[rot1 × (rot1 × rot2)]
-R2 = (r1', r2', r3')
-```
+
+$$
+r_1\prime = Norm[rot_1], r_2\prime = Norm[rot_1 × rot_2], r_3\prime = Norm[rot_1 × (rot_1 × rot_2)] \\
+R_2=\begin{pmatrix}
+r_1\prime \\
+r_2\prime \\
+r_3\prime \\
+\end{pmatrix}
+$$
+
 R1 and R2 are orthogonal matrices, mapping the basis {e1, e2, e3} to {r1, r2, r3} and {r1', r2', r3'} respectively. Thus, the following R maps {r1, r2, r3} to {r1', r2', r3'}. This R is the rotation matrix to be sought.
-```
-R = R2R1.T
-```
+
+$$
+R = R_2R_1^\intercal
+$$
+
 ![rotation](https://user-images.githubusercontent.com/51109408/219936558-c39616fb-4dce-4c67-b869-7897b2b04226.png)
 
 The following commands can be used to perform a series of processes.
