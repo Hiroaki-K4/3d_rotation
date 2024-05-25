@@ -105,11 +105,13 @@ The method to find the Rotation matrix using $ori1, ori2, rot1, rot2$ is shown b
 ![2points](https://user-images.githubusercontent.com/51109408/219936063-36f9c3e8-33e4-4bef-b346-2d2d0dc63718.png)
 
 ## 1. Find the outer product of two vectors and normalize it to a unit vector.
-The result obtained is **ori1*ori2** and **rot1*rot2** in the image below.
+The result obtained is $ori1 \times ori2$ and $rot1\times rot2$ in the image below.
 
 $$
-ori_1 \times ori_2 = Norm[ori_1 \times ori_2] \\
-rot_1 \times rot_2 = Norm[rot_1 \times rot_2]
+\begin{align*}
+ori_1 \times ori_2 &= Norm[ori_1 \times ori_2] \\
+rot_1 \times rot_2 &= Norm[rot_1 \times rot_2]
+\end{align*}
 $$
 
 ![cross1](https://user-images.githubusercontent.com/51109408/219935927-b02e5d3f-beaf-4cee-9b37-2f1ba2887dfc.png)
@@ -117,8 +119,10 @@ $$
 In addition, find the following outer products.
 
 $$
-ori_1 \times (ori_1 \times ori_2) = Norm[ori_1 \times (ori_1 \times ori_2)] \\
-rot_1 \times (rot_1 \times rot_2) = Norm[rot_1 \times (rot_1 \times rot_2)]
+\begin{align*}
+ori_1 \times (ori_1 \times ori_2) &= Norm[ori_1 \times (ori_1 \times ori_2)] \\
+rot_1 \times (rot_1 \times rot_2) &= Norm[rot_1 \times (rot_1 \times rot_2)]
+\end{align*}
 $$
 
 ![cross2](https://user-images.githubusercontent.com/51109408/219935958-4d7a3b9f-181e-4259-a4d7-b3ddea1c474e.png)
@@ -129,8 +133,8 @@ Calculate $R_1$
 $$
 \begin{align*}
 r_1 &= Norm[ori_1], \\
-r_2 &= Norm[ori_1 × ori_2], \\
-r_3 &= Norm[ori_1 × (ori_1 × ori_2)], \\
+r_2 &= Norm[ori_1 \times ori_2], \\
+r_3 &= Norm[ori_1 \times (ori_1 \times ori_2)], \\
 R_1&=\begin{pmatrix}
 r_1 \\
 r_2 \\
