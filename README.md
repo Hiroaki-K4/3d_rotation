@@ -166,7 +166,7 @@ $$
 
 ![rotation](https://user-images.githubusercontent.com/51109408/219936558-c39616fb-4dce-4c67-b869-7897b2b04226.png)
 
-The following commands can be used to perform a series of processes.
+The following command can be used to perform a series of processes.
 ```bash
 python3 estimate_R_from_2points.py
 ```
@@ -320,7 +320,7 @@ R=V\begin{pmatrix}
 U^\intercal \tag{15}
 $$
 
-The following commands can be used to perform a series of processes.
+The following command can be used to perform a series of processes.
 
 ```bash
 python3 estimate_R_with_isotropic_errors.py
@@ -417,7 +417,7 @@ $$
 
 Since $N\prime$ is a symmetric matrix, from the Min-max theorem, $q$ that maximizes Eq.(21) is the unit eigenvector for the largest eigenvalue of matrix $N\prime$. Substituting $q$ into equation (17), we can determine $R$ that maximizes $K$.
 
-The following commands can be used to perform a series of processes.
+The following command can be used to perform a series of processes.
 
 ```bash
 python3 estimate_R_with_isotropic_errors_by_quaternion.py
@@ -476,7 +476,7 @@ R=U
 V^\intercal
 $$
 
-The following commands can be used to perform a series of processes.
+The following command can be used to perform a series of processes.
 
 ```bash
 python3 optimize_R_matrix.py
