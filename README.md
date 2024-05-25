@@ -233,7 +233,7 @@ $$
 S=diag(\sigma_1, \sigma_2, \sigma_3)
 $$
 
-$\sigma$ is is a large and small relationship as follows.
+$\sigma$ is a large and small relationship as follows.
 
 $$
 \sigma_1\geq\sigma_2\geq\sigma_3\geq0
@@ -269,14 +269,12 @@ T31 & T32 & T33 \\
 0 & 0 & \sigma_3 \\
 \end{pmatrix}
 \end{pmatrix} \\
-
 &=tr
 \begin{pmatrix}
 \sigma_1T11 & \sigma_2T12 & \sigma_3T13 \\
 \sigma_1T21 & \sigma_2T22 & \sigma_3T23 \\
 \sigma_1T31 & \sigma_2T32 & \sigma_3T33 \\
 \end{pmatrix} \\
-
 &=\sigma_1T11+\sigma_2T22+\sigma_3T33 \tag{10}
 \end{align*}
 $$
@@ -366,23 +364,14 @@ Hence, $K$ in equation (3) can be written as
 $$
 \begin{align*}
 K=&\sum_{\alpha=1}^N((q_0^2+q_1^2-q_2^2-q_3^2)a_\alpha(1)a\prime_\alpha(1)+2(q_1q_2-q_0q_3)a_\alpha(2)a\prime_\alpha(1) + 2(q_1q_3+q_0q_2)a_\alpha(3)a\prime_\alpha(1) \\
-
 &+2(q_2q_1+q_0q_3)a_\alpha(1)a\prime_\alpha(2)+(q_0^2-q_1^2+q_2^2-q_3^2)a_\alpha(2)a\prime_\alpha(2)+2(q_2q_3-q_0q_1)a_\alpha(3)a\prime_\alpha(2) \\
-
 &+2(q_3q_1-q_0q_2)a_\alpha(1)a\prime_\alpha(3)+2(q_3q_2+q_0q_1)a_\alpha(2)a\prime_\alpha(3)+(q_0^2-q_1^2-q_2^2+q_3^2)a_\alpha(3)a\prime_\alpha(3)) \\
-
 =&\sum_{\alpha=1}^N(q_0^2(a_\alpha(1)a\prime_\alpha(1) + a_\alpha(2)a\prime_\alpha(2) + a_\alpha(3)a\prime_\alpha(3)) \\
-
 &+q_1^2(a_\alpha(1)a\prime_\alpha(1) - a_\alpha(2)a\prime_\alpha(2) - a_\alpha(3)a\prime_\alpha(3)) \\
-
 &+q_2^2(-a_\alpha(1)a\prime_\alpha(1) + a_\alpha(2)a\prime_\alpha(2) - a_\alpha(3)a\prime_\alpha(3)) \\
-
 &+q_3^2(-a_\alpha(1)a\prime_\alpha(1) - a_\alpha(2)a\prime_\alpha(2) + a_\alpha(3)a\prime_\alpha(3)) \\
-
 &+2q_0q_1(-a_\alpha(3)a\prime_\alpha(2) + a_\alpha(2)a\prime_\alpha(3)) + 2q_0q_2(a_\alpha(3)a\prime_\alpha(1) - a_\alpha(1)a\prime_\alpha(3)) \\
-
 &+2q_0q_3(-a_\alpha(2)a\prime_\alpha(1) + a_\alpha(1)a\prime_\alpha(2)) + 2q_2q_3(a_\alpha(3)a\prime_\alpha(2) + a_\alpha(2)a\prime_\alpha(3)) \\
-
 &+2q_3q_1(a_\alpha(3)a\prime_\alpha(1) + a_\alpha(1)a\prime_\alpha(3)) + 2q_1q_2(a_\alpha(2)a\prime_\alpha(1) + a_\alpha(1)a\prime_\alpha(2))) \tag{18}
 \end{align*}
 $$
@@ -398,19 +387,12 @@ the above equation can be written as follows
 $$
 \begin{align*}
 K=&(q_0^2+q_1^2-q_2^2-q_3^2)N_{11}+2(q_1q_2-q_0q_3)N_{21}+2(q_1q_3+q_0q_2)N_{31} \\
-
 &+2(q_2q_1+q_0q_3)N_{12}+(q_0^2-q_1^2+q_2^2-q_3^2)N_{22}+2(q_2q_3-q_0q_1)N_{32} \\
-
 &+2(q_3q_1-q_0q_2)N_{13}+2(q_3q_2+q_0q_1)N_{23}+(q_0^2-q_1^2-q_2^2+q_3^2)N_{33} \\
-
 =&q_0^2(N_{11}+N_{22}+N_{33})+q_1^2(N_{11}-N_{22}-N_{33}) \\
-
 &+q_0^2(-N_{11}+N_{22}-N_{33})+q_0^2(-N_{11}-N_{22}+N_{33}) \\
-
 &+2q_0q_1(-N_{32}+N_{23})+2q_0q_2(N_{31}-N_{13}) \\
-
 &+2q_0q_3(-N_{21}+N_{12})+2q_2q_3(N_{32}+N_{23}) \\
-
 &+2q_3q_1(N_{31}+N_{13})+2q_1q_2(N_{21}+N_{12}) \tag{19}
 \end{align*}
 $$
