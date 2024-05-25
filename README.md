@@ -451,11 +451,8 @@ From this we can write $||R-R\prime||^2$ as
 $$
 \begin{align*}
 ||R-R\prime||^2&=tr((R-R\prime)(R-R\prime)^\intercal) \\
-
 &=tr(RR^\intercal-RR\prime^\intercal-R\prime R^\intercal+R\prime R\prime^\intercal) \\
-
 &=trI-tr(RR\prime^\intercal)-tr((RR\prime^\intercal)^\intercal)+tr(R\prime R\prime^\intercal) \\
-
 &=3-2tr(RR\prime^\intercal)+||R\prime||^2
 \end{align*}
 $$
