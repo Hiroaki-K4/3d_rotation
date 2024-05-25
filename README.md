@@ -191,9 +191,7 @@ Expanding the expression gives
 $$
 \begin{align*}
 J&=\frac{1}{2}\sum_{\alpha=1}^N\langle a\prime_\alpha-Ra_\alpha,a\prime_\alpha-Ra_\alpha \rangle \\
-
 &=\frac{1}{2}\sum_{\alpha=1}^N(\langle a\prime_\alpha,a\prime_\alpha \rangle-2\langle Ra_\alpha,a\prime_\alpha \rangle+\langle Ra_\alpha,Ra_\alpha \rangle) \\
-
 &=\frac{1}{2}\sum_{\alpha=1}^N||a\prime_\alpha||^2 -\sum_{\alpha=1}^N\langle Ra_\alpha,a\prime_\alpha \rangle+\frac{1}{2}\sum_{\alpha=1}^N||a_\alpha||^2 \tag{2}
 \end{align*}
 $$
