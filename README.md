@@ -108,8 +108,8 @@ The method to find the Rotation matrix using $ori1, ori2, rot1, rot2$ is shown b
 The result obtained is **ori1*ori2** and **rot1*rot2** in the image below.
 
 $$
-ori_1*ori_2 = Norm[ori_1 \times ori_2] \\
-rot_1*rot_2 = Norm[rot_1 \times rot_2]
+ori_1 \times ori_2 = Norm[ori_1 \times ori_2] \\
+rot_1 \times rot_2 = Norm[rot_1 \times rot_2]
 $$
 
 ![cross1](https://user-images.githubusercontent.com/51109408/219935927-b02e5d3f-beaf-4cee-9b37-2f1ba2887dfc.png)
@@ -117,8 +117,8 @@ $$
 In addition, find the following outer products.
 
 $$
-ori_1*(ori_1*ori_2) = Norm[ori_1 \times (ori_1 \times ori_2)] \\
-rot_1*(rot_1*rot_2) = Norm[rot_1 \times (rot_1 \times rot_2)]
+ori_1 \times (ori_1 \times ori_2) = Norm[ori_1 \times (ori_1 \times ori_2)] \\
+rot_1 \times (rot_1 \times rot_2) = Norm[rot_1 \times (rot_1 \times rot_2)]
 $$
 
 ![cross2](https://user-images.githubusercontent.com/51109408/219935958-4d7a3b9f-181e-4259-a4d7-b3ddea1c474e.png)
