@@ -13,13 +13,13 @@ python3 quatanion_rot.py
 ![quat](https://user-images.githubusercontent.com/51109408/217398841-5b6292c4-bba3-47a5-b3bf-a4f1763dae33.png)
 
 ## How to calculate rotation using quatanion
-A is the point to move from now on.
+$A$ is the point to move from now on.
 
 $$
 A = [ax, ay, az]
 $$
 
-Normalize A.
+Normalize $A$.
 
 $$
 A_n = \frac{A}{|A|}
@@ -31,13 +31,13 @@ $$
 U=[u_x, u_y, u_z]
 $$
 
-Normalize U, if you need it.
+Normalize $U$, if you need it.
 
 $$
 U_n = \frac{U}{|U|}
 $$
 
-t is the rotation angle.
+$t$ is the rotation angle.
 
 $$
 t = θ
@@ -74,7 +74,7 @@ q_{1w}q_{2z}+q_{1x}q_{2y}-q_{1y}q_{2x}+q_{1z}q_{2w} \\
 \end{pmatrix}
 $$
 
-As a result, [w, x, y, z] is obtained, so extract only the xyz components and make it a vector.  
+As a result, $(w, x, y, z)$ is obtained, so extract only the $xyz$ components and make it a vector.  
 If you want to return a scalar value that is equivalent to the vector before it was normalized, multiply it back by the original scalar value.
 
 $$
@@ -108,8 +108,8 @@ The method to find the Rotation matrix using $ori1, ori2, rot1, rot2$ is shown b
 The result obtained is **ori1*ori2** and **rot1*rot2** in the image below.
 
 $$
-ori_1*ori_2 = Norm[ori_1 × ori_2] \\
-rot_1*rot_2 = Norm[rot_1 × rot_2]
+ori_1*ori_2 = Norm[ori_1 \times ori_2] \\
+rot_1*rot_2 = Norm[rot_1 \times rot_2]
 $$
 
 ![cross1](https://user-images.githubusercontent.com/51109408/219935927-b02e5d3f-beaf-4cee-9b37-2f1ba2887dfc.png)
@@ -117,8 +117,8 @@ $$
 In addition, find the following outer products.
 
 $$
-ori_1*(ori_1*ori_2) = Norm[ori_1 × (ori_1 × ori_2)] \\
-rot_1*(rot_1*rot_2) = Norm[rot_1 × (rot_1 × rot_2)]
+ori_1*(ori_1*ori_2) = Norm[ori_1 \times (ori_1 \times ori_2)] \\
+rot_1*(rot_1*rot_2) = Norm[rot_1 \times (rot_1 \times rot_2)]
 $$
 
 ![cross2](https://user-images.githubusercontent.com/51109408/219935958-4d7a3b9f-181e-4259-a4d7-b3ddea1c474e.png)
