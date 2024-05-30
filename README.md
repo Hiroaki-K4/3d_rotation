@@ -3,6 +3,12 @@ This repository is an experiment in understanding and experimenting with 3D rota
 Let's enjoy 3D rotation.
 <br></br>
 
+# Related articles of mine
+- [Estimate Rotation Matrix from Corresponding Point Cloud](https://medium.com/@hirok4/estimate-rotation-matrix-from-corresponding-point-cloud-9f7e7b155370)
+- [Calculate Rotation Matrix from 2points](https://medium.com/@hirok4/calculate-rotation-matrix-from-2points-48608793d8c9)
+
+<br></br>
+
 # Rotate a point using quatanion
 In the image below, a quaternion is used to rotate a point.
 
